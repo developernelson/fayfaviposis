@@ -10,13 +10,12 @@ export const fileUpload = (file, name = 'sin_nombre') => {
 
         // La referencia establece la ruta de acceso completa al archivo
         const secuenciaJsonRef = ref(storage, `secuencias/${name}.json`);
-        console.log(secuenciaJsonRef);
+        
         // Create a reference to the file to delete
         // const desertRef = ref(storage, `secuencias/${Number(name) - 10}.json`);
 
         uploadString(secuenciaJsonRef, JSON.stringify(file))
             .then((snapshot) => {
-                console.log("Cristian");
                 const { fullPath } = snapshot.metadata;
                 getDownloadURL(ref(storage, fullPath))
                     .then((url) => {
@@ -28,7 +27,6 @@ export const fileUpload = (file, name = 'sin_nombre') => {
         // deleteObject(desertRef);
 
     } catch (error) {
-        console.log("Cristian error");
         console.log(error);
         throw error;
     }
