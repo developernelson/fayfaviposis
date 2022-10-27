@@ -16,7 +16,7 @@ export const fetchDataPost = (data, numeroSecuencia) => {
             'x-correlation-id': '39BDeF96-3309-e9a1-B9e9-B7Dc0D35768F',
             'Content-Type': 'application/json',
             'EZDCode': process.env.EZD_CODE,
-            'branchCode': '001',
+            'branchCode': '002',
             'sequenceNumber': numeroSecuencia,
             'Accept': '*/*',
             'client_id': process.env.CLIENT_ID,
