@@ -16,6 +16,7 @@ export const fileUpload = (file, name = 'sin_nombre') => {
 
         uploadString(secuenciaJsonRef, JSON.stringify(file))
             .then((snapshot) => {
+                console.log(snapshot);
                 const { fullPath } = snapshot.metadata;
                 getDownloadURL(ref(storage, fullPath))
                     .then((url) => {
