@@ -14,7 +14,7 @@ export const Parametro = sequelize.define('Parametro', {
     NumKraft: DataTypes.STRING,
     NumSecuenciaK: DataTypes.NUMBER,
     FechaSecuenciaK: DataTypes.DATE,
-    // Informado: DataTypes.STRING,
+    Informado: DataTypes.STRING,
     
 }, {
     tableName: 'parametros',
