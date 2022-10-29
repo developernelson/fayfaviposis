@@ -109,9 +109,9 @@ export const enviar = async (req, res = response) => {
     let { NumSecuenciaP } = await Parametro.findOne();
     let { informado } = await Info_Secuencia.findOne({ where: { num_secuencia: NumSecuenciaP } });
 
-    if (informado === 'S') {
-        return res.redirect('/');
-    }
+    // if (informado === 'S') {
+    //     return res.redirect('/');
+    // }
 
     try {
 
@@ -131,49 +131,47 @@ export const enviar = async (req, res = response) => {
         // Genero el JSON segun documentacion de API
         let data = { customer, sales, stock };
         
-        // const { set, where } = { set: { Informado: 'S' }, where: { where: { Informado: 'N' } } };
-        // await Parametro.update({ Informado: 'S' }, { where: { Informado: 'N' } });
-
         // Genero el archivo JSON jsonData.json
-        // let data_json = JSON.stringify(data);
-        // const regex = /"_(-|)([0-9]+(?:\.[0-9]+)?)"/g
-        // data_json = data_json.replace(regex, '$1$2')
-        // fileUpload(data_json, NumSecuenciaP.toString());
+        let data_json = JSON.stringify(data);
+        const regex = /"_(-|)([0-9]+(?:\.[0-9]+)?)"/g
+        data_json = data_json.replace(regex, '$1$2')
+        fileUpload(data_json, NumSecuenciaP.toString());
         // fs.writeFileSync('jsonData.json', data_json );
 
 
         // Envio los datos de la secuencia y verifico la respuesta
-        const response = await fetchDataPost(data, NumSecuenciaP);
-        const result = await response.json();
+        // const response = await fetchDataPost(data, NumSecuenciaP);
+        // const result = await response.json();
 
         // Invalid Client 
-        if (result.error) {
-            throw new Error(result.error);
-        }
+        // if (result.error) {
+        //     throw new Error(result.error);
+        // }
 
         // verifico el estado de mensaje de la respuesta
-        const message = getStatusMessage(result);
+        // const message = getStatusMessage(result);
 
-        if (message.msgType === 'success') {
-            const { set, where } = { set: { Informado: 'S' }, where: { where: { Informado: 'N' } } };
-            await Customer.update(set, where);
-            await Sale.update(set, where);
-            await Stock.update(set, where);
-            await Parametro.update(set, where);
-            await Info_Secuencia.update({ informado: 'S' }, { where: { informado: 'N' } });
+        // if (message.msgType === 'success') {
+        //     const { set, where } = { set: { Informado: 'S' }, where: { where: { Informado: 'N' } } };
+        //     await Customer.update(set, where);
+        //     await Sale.update(set, where);
+        //     await Stock.update(set, where);
+        //     await Parametro.update(set, where);
+        //     await Info_Secuencia.update({ informado: 'S' }, { where: { informado: 'N' } });
 
-            // persisto el json y genero la url de descarga
-            sales = formatSales(salesSinFormato);
-            data = { customer, sales, stock };
-            fileUpload(data, NumSecuenciaP.toString());
+        //     // persisto el json y genero la url de descarga
+        //     sales = formatSales(salesSinFormato);
+        //     data = { customer, sales, stock };
+        //     fileUpload(data, NumSecuenciaP.toString());
 
-            message.message = 'No hay SECUENCIA pendiente de enviar.'
-            message.msgType = 'info'
+        //     message.message = 'No hay SECUENCIA pendiente de enviar.'
+        //     message.msgType = 'info'
 
-            return res.render('index', { alert: true, ...message, displayName });
-        }
+        //     return res.render('index', { alert: true, ...message, displayName });
+        // }
 
-        res.render('index', { ...message, displayName });
+        // res.render('index', { ...message, displayName });
+        res.render('index', {  displayName });
 
     } catch (error) {
         console.log(error);
