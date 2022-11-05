@@ -1,7 +1,7 @@
 
-import { Customer, Parametro, Info_Secuencia, Sale, Stock } from '../models'
+import { Customer, Info_Secuencia, Sale, Stock } from '../models'
 
-import { formatCustomers, formatHistorial, formatSales, formatStock } from '../database'
+import { formatCustomers, formatSales, formatStock } from '../database'
 
 export const getJson = async (numSecuencia = 0) => {
 
@@ -9,7 +9,7 @@ export const getJson = async (numSecuencia = 0) => {
     if (numSecuencia !== 0 && !isNaN(Number(numSecuencia))) {
 
         const register = await Info_Secuencia.findOne({ where: { num_secuencia: numSecuencia } })
-
+console.log(register);
         if (register !== null) {
 
             const [customersSinFormato, salesSinFormato, stockSinFormato] = await Promise.all([
@@ -28,10 +28,17 @@ export const getJson = async (numSecuencia = 0) => {
             data_json = data_json.replace(regex, '$1$2')
 
 
-            return data_json;
+            return {
+                ok: true,  
+                json: data_json
+            }
+
         }
     }
 
-    return false;
+    return {
+        ok: false,  
+        
+    }
 
 }
