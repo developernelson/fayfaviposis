@@ -15,7 +15,7 @@ function getFile() {
 
    const nroSec = document.querySelector('.input-secuencia').value;
 
-   fetch(`http://localhost:5000/data/secuencia?nroSec=${nroSec}`)
+   fetch(`https://fayfaviposis.herokuapp.com/data/secuencia?nroSec=${nroSec}`)
       .then((response) => response.json())
       .then(json => {
 
