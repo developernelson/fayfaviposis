@@ -18,7 +18,6 @@ function getFile() {
    fetch(`https://fayfaviposis.herokuapp.com/data/secuencia?nroSec=${nroSec}`)
       .then((response) => response.json())
       .then(json => {
-         console.log(json);
          if (json) {
             document.querySelector('.mensaje-secuencia').classList.add('mensaje-none');
             return downloadTextFile(JSON.stringify(json), `${nroSec}.json`);
