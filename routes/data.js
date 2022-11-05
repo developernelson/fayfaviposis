@@ -13,7 +13,7 @@ router.get('/actualizar', authentication, actualizar);
 router.get('/enviar', authentication, enviar);
 
 router.get('/descargar', authentication, descargar); // muestra la vista para descargar
-router.get('/secuencia', authentication, secuencia);
+router.get('/secuencia', secuencia);
 
 
 module.exports = router;

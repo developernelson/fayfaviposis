@@ -115,8 +115,9 @@ export const descargar = async (req, res = response) => {
 export const secuencia = async (req, res = response) => {
 
     const { nroSec } = req.query;
-    const json = await getJson(nroSec);
-    res.send(json);
+    console.log(nroSec);
+    // const json = await getJson(nroSec);
+    res.json({ok: true});
 
 }
 
