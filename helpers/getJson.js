@@ -5,11 +5,12 @@ import { formatCustomers, formatSales, formatStock } from '../database'
 
 export const getJson = async (numSecuencia = 0) => {
 
+    console.log('entramos a la funcion GETJSON');
     // Pregunto si es distinto de 0 y si es un numero
     if (numSecuencia !== 0 && !isNaN(Number(numSecuencia))) {
 
         const register = await Info_Secuencia.findOne({ where: { num_secuencia: numSecuencia } })
-console.log(register);
+
         if (register !== null) {
 
             const [customersSinFormato, salesSinFormato, stockSinFormato] = await Promise.all([
