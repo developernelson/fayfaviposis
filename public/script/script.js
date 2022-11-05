@@ -14,8 +14,8 @@ function handleUpdateData() {
 function getFile() {
 
    const nroSec = document.querySelector('.input-secuencia').value;
-
-   fetch(`https://fayfaviposis.herokuapp.com/data/secuencia?nroSec=${nroSec}`)
+   // fetch(`https://fayfaviposis.herokuapp.com/data/secuencia?nroSec=${nroSec}`)
+   fetch(`http://localhost:5000/data/secuencia?nroSec=${nroSec}`)
       .then((response) => response.json())
       .then(json => {
          if (json) {
@@ -50,12 +50,9 @@ function noExisteSecuencia(nroSec) {
 
 }
 
-const input = document.querySelector('.input-secuencia');
+function enterPress(event) {
 
-// Execute a function when the user presses a key on the keyboard
-input.addEventListener("keypress", function (event) {
-   // If the user presses the "Enter" key on the keyboard
    if (event.key === "Enter") {
       document.querySelector('.btn-secuencia').focus()
    }
-})
+}
