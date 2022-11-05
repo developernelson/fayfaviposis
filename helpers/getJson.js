@@ -27,18 +27,12 @@ export const getJson = async (numSecuencia = 0) => {
             const regex = /"_(-|)([0-9]+(?:\.[0-9]+)?)"/g
             data_json = data_json.replace(regex, '$1$2')
 
-
-            return {
-                ok: true,  
-                json: data_json
-            }
-
+            return data_json;
+            
         }
     }
 
-    return {
-        ok: false,  
-        
-    }
-
+    return false;
 }
+    
+

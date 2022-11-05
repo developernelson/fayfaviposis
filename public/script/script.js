@@ -12,12 +12,12 @@ function handleUpdateData() {
 }
 
 function getFile() {
-
+   handleUpdateData();
    const nroSec = document.querySelector('.input-secuencia').value;
-   // fetch(`https://fayfaviposis.herokuapp.com/data/secuencia?nroSec=${nroSec}`)
-   fetch(`http://localhost:5000/data/secuencia?nroSec=${nroSec}`)
+   fetch(`https://fayfaviposis.herokuapp.com/data/secuencia?nroSec=${nroSec}`)
       .then((response) => response.json())
       .then(json => {
+         document.querySelector('.update').style.display = "none";
          if (json) {
             document.querySelector('.mensaje-secuencia').classList.add('mensaje-none');
             return downloadTextFile(JSON.stringify(json), `${nroSec}.json`);
